@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chu</title>
+  </head>
+  <body>
+    <h1 style="text-align: center">Danh sach cac san pham</h1>
+    <div style="display: flex">
+      <%for(let i=0;i < data.length; i++){%>
+      <div style="width: 30%; height: 200px">
+        <img src="<%=data[i].anh%>" alt="Hinh ne" />
+        <p><%=data[i].tensp%></p>
+        <p><%=data[i].gia%></p>
+        <form action="/add" method="POST">
+          <input type="hidden" value="<%=data[i].masp%>" name="ma" />
+          <input type="hidden" value="<%=data[i].tensp%>" name="ten" />
+          <input type="hidden" value="<%=data[i].gia%>" name="gia" />
+          <input type="hidden" value="<%=data[i].anh%>" name="anh" />
+          <button type="submit">Them san pham</button>
+        </form>
+      </div>
+      <%}%>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <h1 style="text-align: center">Gio hang</h1>
+    <table border="1" style="margin-left: 30%">
+      <tr>
+        <th>masp</th>
+        <th>anhsp</th>
+        <th>tensp</th>
+        <th>soluong</th>
+        <th>giasp</th>
+        <th>hanh dong</th>
+      </tr>
+      <%for(let i =0;i< dataP.length;i++){%>
+      <tr>
+        <td><%=dataP[i].masp%></td>
+        <td>
+          <img src="<%=dataP[i].anh%>" />
+        </td>
+        <td><%=dataP[i].tensp%></td>
+        <td><%=dataP[i].soluong%></td>
+        <td><%=dataP[i].gia%></td>
+        <td>
+          <form method="POST" action="/delete">
+            <input type="hidden" value="<%=dataP[i].masp%>" name="ma" />
+            <button>Xoa</button>
+          </form>
+          <form method="POST" action="/update">
+            <input type="hidden" value="<%=dataP[i].masp%>" name="ma" />
+            <input type="hidden" value="<%=dataP[i].soluong%>" name="sl" />
+            <button>Cap Nhat</button>
+          </form>
+        </td>
+      </tr>
+      <%}%>
+    </table>
+  </body>
+</html>
